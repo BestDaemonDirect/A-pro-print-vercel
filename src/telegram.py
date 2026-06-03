@@ -1,5 +1,4 @@
 import logging
-import threading
 import requests
 from .settings import TELEGRAM_BOT_CHAT_ID, TELEGRAM_BOT_TOKEN, DEBUG, SECRET_KEY
 
@@ -50,9 +49,5 @@ def send_telegram_notification(name, email, phone, print_size=None, comment=None
         logger.exception("Ошибка отправки Telegram сообщения: %s", e)
         return False
 
-def send_telegram_notification_async(name=None, email=None, phone=None, print_size=None, comment=None):
-    t = threading.Thread(
-        target=lambda: send_telegram_notification(name, email, phone, print_size, comment),
-        daemon=False
-    )
-    t.start()
+
+ 

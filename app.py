@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 
-from src.telegram import send_telegram_notification_async, getDebug, getSecretKey
+from src.telegram import send_telegram_notification, getDebug, getSecretKey
 
 
 app = Flask(__name__)
@@ -37,7 +37,7 @@ def landing():
         comment = request.form.get("comment", "")
 
         if name and phone:
-            send_telegram_notification_async(name=name, email=email, phone=phone, print_size=print_size, comment=comment)
+            send_telegram_notification(name=name, email=email, phone=phone, print_size=print_size, comment=comment)
             flash(MESSAGES[language][200], 'success')
         else:
             flash(MESSAGES[language][400], 'error')
