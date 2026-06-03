@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 
-from src.telegram import send_telegram_notification_async, getDebug
+from src.telegram import send_telegram_notification_async, getDebug, getSecretKey
 
 
-flask = Flask(__name__)
-flask.secret_key = 'your-secret-key-here'  # Required for flash messages
+app = Flask(__name__)
+app.secret_key = getSecretKey()
 
 MESSAGES = {
     "ru": {
@@ -24,7 +24,7 @@ MESSAGES = {
 }
 
 
-@flask.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def landing():
     if request.method == "POST":
         # Get language from session or cookie, fallback to accept-language
@@ -47,7 +47,7 @@ def landing():
 
     return render_template("landing.html")
 
-@flask.route("/about-us")
+@app.route("/about-us")
 def aboutUs():
     return render_template("about_us.html")
 
@@ -56,4 +56,4 @@ def aboutUs():
 
 
 if __name__ == "__main__":
-    flask.run(debug=getDebug())
+    app.run(debug=getDebug())

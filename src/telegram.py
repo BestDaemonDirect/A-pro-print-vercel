@@ -1,13 +1,16 @@
 import logging
 import threading
 import requests
-from .settings import TELEGRAM_BOT_CHAT_ID, TELEGRAM_BOT_TOKEN, DEBUG
+from .settings import TELEGRAM_BOT_CHAT_ID, TELEGRAM_BOT_TOKEN, DEBUG, SECRET_KEY
 
 logger = logging.getLogger(__name__)
 
 
 def getDebug():
     return DEBUG 
+
+def getSecretKey():
+    return SECRET_KEY
 
 def _message_text(name, email, phone, print_size=None, comment=None):
     return (
