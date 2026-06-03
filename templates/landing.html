@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A-Pro Print</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link  rel  ="stylesheet" href = "{{ url_for('static', filename='css/landing.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<div class="page">
+<header>
+  <div class = "header-left">
+    <div class="logo"><img src= "{{ url_for('static', filename='image/logo.png') }}">A-Pro Print</div>
+    <nav>
+      <a data-target="services" data-i18n="nav_services">Услуги</a>
+      <a data-target="gallery" data-i18n="nav_gallery">Галерея</a>
+      <a data-target="prices" data-i18n="nav_prices">Цены</a>
+      <a data-target="reviews" data-i18n="nav_reviews">Отзывы</a>
+    </nav>
+  
+    <button class="btn" onclick="openModal()" data-i18n="hero_order">Оставить заявку</button>
+ 
+  </div>    
+
+
+
+<div class = "header-right">
+  <!-- LANGUAGE SWITCHER -->
+  <div class="lang-wrapper">
+    <div class="lang-card" id="langCard">
+      <span id="currentLangDisplay">RU</span>
+    </div>
+    <div class="lang-menu" id="langMenu">
+      <div class="lang-option" data-lang="ru">
+        <span>RU</span>
+      </div>
+      <div class="lang-option" data-lang="kk">
+        <span>KZ</span>
+      </div>
+      <div class="lang-option" data-lang="en">
+        <span>EN</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:20px;">
+    <div class="burger" onclick="togglePanel(this)"><span></span></div>
+  </div>
+</div>  
+
+</header>
+
+<!-- PANEL -->
+<div class="social-panel" id="panel">
+  <div class="panel-title">A-Pro Print</div>
+
+  <nav class="panel-nav">
+    <a data-target="services" data-i18n="nav_services">Услуги</a>
+    <a data-target="gallery" data-i18n="nav_gallery">Галерея</a>
+    <a data-target="prices" data-i18n="nav_prices">Цены</a>
+    <a data-target="reviews" data-i18n="nav_reviews">Отзывы</a>
+  </nav>
+
+  <div class="panel-lang">
+    <div class="lang-switch">
+      <button class="lang-btn" onclick="setLanguage('ru'); applyLanguage('ru');">RU</button>
+      <button class="lang-btn" onclick="setLanguage('kk'); applyLanguage('kk');">KZ</button>
+      <button class="lang-btn" onclick="setLanguage('en'); applyLanguage('en');">EN</button>
+    </div>
+  </div>
+
+  <a href="/about-us">
+    <i class="fa-solid fa-circle-info"></i><span data-i18n="nav_about">О нас</span>
+  </a>
+
+   <a href="tel:+77777777777">
+    <i class="fa-solid fa-phone"></i><span data-i18n="phone_number">+7 775 028 9394 77</span>
+  </a>
+
+  <a href="https://www.instagram.com/a_pro.print/" target="_blank">
+    <i class="fa-brands fa-instagram"></i>Instagram
+  </a>
+  
+   <a>
+    <i class="fa-solid fa-map-marker-alt"></i><span data-i18n="address">Нурсая 57, 5 офис</span>
+  </a>
+
+
+  <button class="close-btn" onclick="closePanel()">×</button>
+
+  <div class="panel-footer">A-PRO-PRINT</div>
+</div>
+
+<section class="hero">
+  <div class="hero-text">
+    <h1><span data-i18n="hero_title">Уникальные настенные принты</span><br><span data-i18n="hero_title_part2">для вашего интерьера</span></h1>
+    <p data-i18n="hero_subtitle">Превратите любую стену в произведение искусства.</p>
+    <button class="btn" onclick="openModal()" data-i18n="hero_order">Оставить заявку</button>
+  </div>
+  <div class="hero-image">
+    <img src="{{ url_for('static', filename='image/p10.png') }}" alt="Проект">
+  </div>
+</section>
+
+<section id="services">
+  <div class = "service-card">
+  <h2 data-i18n="services_title">Услуги</h2>
+  <div class="cards">
+    <div class="card">
+      <i class="fa-solid fa-children service-icon"></i>
+      <h3 data-i18n="service_kindergarten">Садики</h3>
+      <p data-i18n="service_kindergarten_text">Сказочные миры для маленьких мечтателей</p>
+    </div>
+
+    <div class="card school-card">
+      <i class="fa-solid fa-school service-icon"></i>
+      <h3 data-i18n="service_school">Школы</h3>
+      <p data-i18n="service_school_text">Пространство, в котором хочется учиться</p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-building service-icon"></i>
+      <h3 data-i18n="service_office">Офисы</h3>
+      <p data-i18n="service_office_text">Стены, которые вдохновляют на успех</p>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="wp-premium-slider">
+  <div class="gallery-container">
+    <h2 class="gallery-title" data-i18n="gallery_title">Галерея</h2>
+    
+    <div class="wp-premium-viewport">
+      <div class="wp-premium-track">
+        <div class="wp-premium-slide">
+          <div class="wp-premium-card">
+            <img src="{{ url_for('static', filename='image/p6.png') }}" alt="Project 1">
+            <div class="wp-premium-overlay">
+              <h3 data-i18n="gallery_item1">Творчество и точка</h3>
+
+            </div>
+          </div>
+        </div>
+        <div class="wp-premium-slide">
+          <div class="wp-premium-card">
+            <img src="{{ url_for('static', filename='image/p4.png') }}" alt="Project 2">
+            <div class="wp-premium-overlay"><h3>
+              <h3 data-i18n="gallery_item2">Обучение и знание</h3>
+            </div>
+          </div>
+        </div>
+        <div class="wp-premium-slide">
+          <div class="wp-premium-card">
+            <img src="{{ url_for('static', filename='image/p3.png') }}" alt="Project 3">
+            <div class="wp-premium-overlay">
+              <h3 data-i18n="gallery_item3">Дизайн</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="wp-premium-arrow wp-premium-prev">&#10094;</button>
+    <button class="wp-premium-arrow wp-premium-next">&#10095;</button>
+  </div>
+</section>
+
+
+
+
+
+<section id="prices">
+  <h2 data-i18n="prices_title">Прайс-лист</h2>
+  <div class="prices">
+    <div class="price">
+      <b data-i18n="price_1">1–20 кв. м</b>
+      <p class="price-value" data-i18n="price_1_value">23 000 тг</p>
+      <span class="price-note" data-i18n="price_1_note">Одна стена</span>
+    </div>  
+    
+    <div class="price highlight">
+      <b data-i18n="price_2">20–50 кв. м</b>
+      <p class="price-value" data-i18n="price_2_value">20 000 тг</p>
+      <span class="price-note" data-i18n="price_2_note">Помещение целиком</span>
+    
+    </div>
+    
+    <div class="price">
+      <b data-i18n="price_3">50+ кв. м</b>
+      <p class="price-value" data-i18n="price_3_value">18 000 тг</p>
+      <span class="price-note" data-i18n="price_3_note">Крупный объект</span>
+    </div>  
+  
+  </div>
+</section>
+
+<div class="overlay" id="ov">
+  <div class="modal modal-form">
+    <button class="close-btn modal-close" onclick="closeModal()">×</button>
+    <h3 class="modal-title" data-i18n="form_title">Оставить заявку</h3>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="form-message {{ category }}" id="flash-message">
+            <span>{{ message }}</span>
+            <button type="button" class="message-close" onclick="closeFlashMessage()">×</button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <form method="post" action="{{ url_for('landing') }}" class="application-form">
+      <label class="form-label" data-i18n="form_name">Имя</label>
+      <input type="text" name="name" placeholder="" data-i18n-placeholder="form_name_placeholder" required class="form-input">
+
+      <label class="form-label" data-i18n="form_email">Почта</label>
+      <input type="email" name="email" placeholder="" data-i18n-placeholder="form_email_placeholder" class="form-input">
+
+      <label class="form-label" data-i18n="form_phone">Номер телефона</label>
+      <input type="tel" name="phone" value="+7" placeholder="" data-i18n-placeholder="form_phone_placeholder" required class="form-input" required>
+
+      <label class="form-label" data-i18n="form_size">Размер покраски</label>
+      <div class="custom-select" data-name="print-size">
+        <div class="select-header">
+          <span class="select-label" data-i18n="form_size_select">Выберите размер</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="select-menu">
+          <div class="select-option" data-value="" data-i18n="form_size_select">Выберите размер</div>
+          <div class="select-option" data-value="1-20" data-i18n="form_size_1">1–20 кв. м</div>
+          <div class="select-option" data-value="20" data-i18n="form_size_2">20 кв. м</div>
+          <div class="select-option" data-value="50+" data-i18n="form_size_3">50+ кв. м</div>
+        </div>
+      </div>
+      <input type="hidden" name="print-size" class="select-input" value="">
+
+      <label class="form-label form-label-optional"><span data-i18n="form_comment">Комментарий</span> (<span data-i18n="form_comment_optional">необязательно</span>)</label>
+      <textarea name="comment" placeholder="" data-i18n-placeholder="form_comment_placeholder" rows="4" class="form-input form-textarea"></textarea>
+
+      <button type="submit" class="btn submit-btn" id="submitOrder" data-i18n="form_submit">Отправить</button>
+    </form>
+  </div>
+</div>
+
+
+<section id="reviews">
+  <h2 data-i18n="reviews_title">Отзывы</h2>
+  <div class="reviews-grid">
+    {% if rewiews%}
+      {% for review in reviews %}
+        <div class="review-card">
+          <p class="review-text">{{ review.client_text }}</p>
+          <div class="review-footer">
+            <div class="review-avatar">
+              <i class="fas fa-user" style="color: white; font-size: 30px;"></i>
+            </div>
+            <b class="review-name">{{ review.client_name }}</b>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p data-i18n="reviews_empty">Пока нету отзывов</p>
+    {% endif %}
+  </div>
+</section>
+
+
+<script src="{{ url_for('static', filename='js/i18n.js') }}"></script>
+<script>
+// Открыть модальное окно после редиректа, если есть сообщение (успех/ошибка заявки)
+document.addEventListener('DOMContentLoaded', () => {
+  const formMessage = document.querySelector('.modal-form .form-message');
+  if (formMessage) {
+    document.getElementById('ov').style.display = 'flex';
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const track = document.querySelector(".wp-premium-track");
+  const viewport = document.querySelector(".wp-premium-viewport");
+  const nextBtn = document.querySelector(".wp-premium-next");
+  const prevBtn = document.querySelector(".wp-premium-prev");
+  
+  const slides = Array.from(track.children);
+  const total = slides.length;
+
+  // 1. Создаем структуру: [Клоны конца] [Оригиналы] [Клоны начала]
+  // Это дает огромный запас пространства для быстрой прокрутки
+  slides.forEach(slide => track.appendChild(slide.cloneNode(true))); 
+  [...slides].reverse().forEach(slide => track.insertBefore(slide.cloneNode(true), track.firstChild));
+
+  let currentIndex = total; 
+  let isDragging = false;
+  let isTransitioning = false; // Флаг блокировки "спам-кликов"
+  let startX = 0;
+  let currentTranslate = 0;
+  let prevTranslate = 0;
+
+  const getStep = () => slides[0].offsetWidth + 15;
+
+  // Функция для перемещения (плавного или мгновенного)
+  const updatePosition = (smooth = true) => {
+    track.style.transition = smooth ? "transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)" : "none";
+    currentTranslate = -currentIndex * getStep();
+    track.style.transform = `translateX(${currentTranslate}px)`;
+    prevTranslate = currentTranslate;
+  };
+
+  // 2. СЕКРЕТ WALL PRINT: Прыжок ровно в момент окончания анимации
+  track.addEventListener('transitionend', () => {
+    isTransitioning = false; // Разблокируем возможность крутить дальше
+    
+    // Если ушли в правые клоны — прыгаем в центр (на оригинал)
+    if (currentIndex >= total * 2) {
+      currentIndex = total;
+      updatePosition(false);
+    }
+    // Если ушли в левые клоны — прыгаем в центр
+    if (currentIndex < total) {
+      currentIndex = total * 2 - 1;
+      updatePosition(false);
+    }
+  });
+
+  const moveToIndex = (direction) => {
+    if (isTransitioning) return; // Если слайдер еще едет — игнорируем новые нажатия
+    isTransitioning = true;
+    currentIndex -= direction;
+    updatePosition(true);
+  };
+
+  // --- Drag & Drop (Мышка и Тач) ---
+  const dragStart = (e) => {
+    if (isTransitioning) return;
+    isDragging = true;
+    startX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+    track.style.transition = "none";
+    viewport.style.cursor = "grabbing";
+  };
+
+  const dragMove = (e) => {
+    if (!isDragging) return;
+    const x = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+    const walk = x - startX;
+    track.style.transform = `translateX(${prevTranslate + walk}px)`;
+    currentTranslate = prevTranslate + walk;
+  };
+
+  const dragEnd = () => {
+    if (!isDragging) return;
+    isDragging = false;
+    viewport.style.cursor = "grab";
+    
+    const movedBy = currentTranslate - prevTranslate;
+    const threshold = getStep() / 4;
+
+    if (Math.abs(movedBy) > threshold) {
+      isTransitioning = true;
+      currentIndex -= Math.sign(movedBy);
+    }
+    updatePosition(true);
+  };
+
+  // Стартовая позиция
+  updatePosition(false);
+
+  nextBtn.addEventListener('click', () => moveToIndex(-1));
+  prevBtn.addEventListener('click', () => moveToIndex(1));
+  track.addEventListener('mousedown', dragStart);
+  window.addEventListener('mousemove', dragMove);
+  window.addEventListener('mouseup', dragEnd);
+  track.addEventListener('touchstart', dragStart, {passive: true});
+  window.addEventListener('touchmove', dragMove, {passive: true});
+  window.addEventListener('touchend', dragEnd);
+  track.querySelectorAll('img').forEach(img => img.ondragstart = () => false);
+});
+
+
+
+
+  /* ===== НАВИГАЦИЯ (header + panel) ===== */
+  document.querySelectorAll('header nav a, .panel-nav a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      if (link.dataset.target) {
+        e.preventDefault();
+        closePanel();
+        const target = document.getElementById(link.dataset.target);
+        if (target) target.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  });
+
+  /* ===== КАРТОЧКИ УСЛУГ ===== */
+  document.querySelectorAll('.card').forEach(card => {
+    card.classList.add('show');
+  });
+
+
+
+  /* ===== БУРГЕР ===== */
+  window.togglePanel = () => {
+    document.querySelector('.social-panel')?.classList.toggle('active');
+  };
+
+  window.closePanel = () => {
+    document.querySelector('.social-panel')?.classList.remove('active');
+  };
+
+
+  /* ===== ЦЕНЫ ===== */
+  document.querySelectorAll('.price').forEach((price, i) => {
+    setTimeout(() => {
+      price.classList.add('visible');
+    }, i * 300);
+  });
+
+const phoneInput = document.querySelector('input[name="phone"]');
+phoneInput.addEventListener('focus', () => {
+  if (!phoneInput.value.startsWith('+7')) {
+    phoneInput.value = '+7';
+  }
+});
+
+phoneInput.addEventListener('input', () => {
+  if (!phoneInput.value.startsWith('+7')) {
+    phoneInput.value = '+7';
+  }
+});
+function openModal() {
+  document.getElementById("ov").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("ov").style.display = "none";
+}
+
+function closeFlashMessage() {
+  const flashMessage = document.getElementById('flash-message');
+  if (flashMessage) {
+    flashMessage.style.display = 'none';
+  }
+}
+const cards = document.querySelectorAll(".service-card");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    }
+  });
+}, {
+  threshold: 0.2
+});
+
+cards.forEach(card => {
+  observer.observe(card);
+});
+
+// ===== КАСТОМНЫЙ SELECT =====
+document.querySelectorAll('.custom-select').forEach(customSelect => {
+  const header = customSelect.querySelector('.select-header');
+  const menu = customSelect.querySelector('.select-menu');
+  const options = customSelect.querySelectorAll('.select-option');
+  const label = customSelect.querySelector('.select-label');
+  const hiddenInput = document.querySelector(`input[name="${customSelect.dataset.name}"]`);
+
+  // Открыть/закрыть меню при клике на header
+  header.addEventListener('click', (e) => {
+    e.stopPropagation();
+    
+    // Закрыть другие open меню
+    document.querySelectorAll('.select-menu.active').forEach(m => {
+      if (m !== menu) {
+        m.classList.remove('active');
+        m.parentElement.querySelector('.select-header').classList.remove('active');
+      }
+    });
+
+    menu.classList.toggle('active');
+    header.classList.toggle('active');
+  });
+
+  // Выбрать опцию
+  options.forEach(option => {
+    option.addEventListener('click', (e) => {
+      e.stopPropagation();
+      
+      const value = option.dataset.value;
+      const text = option.textContent;
+
+      // Обновить hidden input для отправки формы
+      hiddenInput.value = value;
+
+      // Обновить метку
+      label.textContent = text;
+
+      // Обновить highlight выбранной опции
+      options.forEach(opt => opt.classList.remove('selected'));
+      option.classList.add('selected');
+
+      // Закрыть меню
+      menu.classList.remove('active');
+      header.classList.remove('active');
+    });
+  });
+
+  // Закрыть меню при клике вне его
+  document.addEventListener('click', (e) => {
+    if (!customSelect.contains(e.target)) {
+      menu.classList.remove('active');
+      header.classList.remove('active');
+    }
+  });
+
+  // Закрыть при ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      menu.classList.remove('active');
+      header.classList.remove('active');
+    }
+  });
+});
+
+</script>
+
+</body>
+</html>
