@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+<link rel="stylesheet" href="/static/css/landing.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Montserrat,sans-serif}
 body{background:#0b0b0b;color:#fff;scroll-behavior:smooth;overflow-x:hidden}
@@ -699,7 +699,7 @@ nav a:hover{color:#ffd200;text-shadow:0 0 10px rgba(255,210,0,.8)}
 <div class="page">
 <header>
   <div class="header-left">
-    <div class="logo"><img src="{{ url_for('static', filename='image/logo.png') }}">A-Pro Print</div>
+    <div class="logo"><img src="/static/image/logo.png">A-Pro Print</div>
     <nav>
       <a href="/#services" data-i18n="nav_services">Услуги</a>
       <a href="/#gallery" data-i18n="nav_gallery">Галерея</a>
@@ -783,11 +783,11 @@ nav a:hover{color:#ffd200;text-shadow:0 0 10px rgba(255,210,0,.8)}
   </div>
   
   <div class="about-image">
-    <img src="{{ url_for('static', filename='image/APro_Print_logo.jpg') }}" alt="APro Print logo">
+    <img src="/static/image/APro_Print_logo.jpg" alt="APro Print logo">
   </div>
 </section>
 
-<script src="{{ url_for('static', filename='js/i18n.js') }}"></script>
+<script src="/static/js/i18n.js"></script>
 <script>
 // Навигация
 document.querySelectorAll('nav a').forEach(link=>{

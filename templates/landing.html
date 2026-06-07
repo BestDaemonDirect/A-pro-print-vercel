@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link  rel  ="stylesheet" href = "{{ url_for('static', filename='css/landing.css') }}">
+<link  rel  ="stylesheet" href = "/static/css/landing.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -15,7 +15,7 @@
 <div class="page">
 <header>
   <div class = "header-left">
-    <div class="logo"><img src= "{{ url_for('static', filename='image/logo.png') }}">A-Pro Print</div>
+    <div class="logo"><img src= "/static/image/logo.png">A-Pro Print</div>
     <nav>
       <a data-target="services" data-i18n="nav_services">Услуги</a>
       <a data-target="gallery" data-i18n="nav_gallery">Галерея</a>
@@ -103,7 +103,7 @@
     <button class="btn" onclick="openModal()" data-i18n="hero_order">Оставить заявку</button>
   </div>
   <div class="hero-image">
-    <img src="{{ url_for('static', filename='image/p10.png') }}" alt="Проект">
+    <img src="/static/image/p10.png" alt="Проект">
   </div>
 </section>
 
@@ -140,7 +140,7 @@
       <div class="wp-premium-track">
         <div class="wp-premium-slide">
           <div class="wp-premium-card">
-            <img src="{{ url_for('static', filename='image/p6.png') }}" alt="Project 1">
+            <img src="/static/image/p6.png" alt="Project 1">
             <div class="wp-premium-overlay">
               <h3 data-i18n="gallery_item1">Творчество и точка</h3>
 
@@ -149,7 +149,7 @@
         </div>
         <div class="wp-premium-slide">
           <div class="wp-premium-card">
-            <img src="{{ url_for('static', filename='image/p4.png') }}" alt="Project 2">
+            <img src="/static/image/p4.png" alt="Project 2">
             <div class="wp-premium-overlay"><h3>
               <h3 data-i18n="gallery_item2">Обучение и знание</h3>
             </div>
@@ -157,7 +157,7 @@
         </div>
         <div class="wp-premium-slide">
           <div class="wp-premium-card">
-            <img src="{{ url_for('static', filename='image/p3.png') }}" alt="Project 3">
+            <img src="/static/image/p3.png" alt="Project 3">
             <div class="wp-premium-overlay">
               <h3 data-i18n="gallery_item3">Дизайн</h3>
             </div>
@@ -204,17 +204,13 @@
   <div class="modal modal-form">
     <button class="close-btn modal-close" onclick="closeModal()">×</button>
     <h3 class="modal-title" data-i18n="form_title">Оставить заявку</h3>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          <div class="form-message {{ category }}" id="flash-message">
-            <span>{{ message }}</span>
-            <button type="button" class="message-close" onclick="closeFlashMessage()">×</button>
-          </div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
-    <form method="post" action="{{ url_for('landing') }}" class="application-form">
+    <?php if (isset($flash) && $flash): ?>
+      <div class="form-message <?php echo $flash['type']; ?>" id="flash-message">
+        <span><?php echo $flash['message']; ?></span>
+        <button type="button" class="message-close" onclick="closeFlashMessage()">×</button>
+      </div>
+    <?php endif; ?>
+    <form method="post" action="/" class="application-form">
       <label class="form-label" data-i18n="form_name">Имя</label>
       <input type="text" name="name" placeholder="" data-i18n-placeholder="form_name_placeholder" required class="form-input">
 
@@ -251,26 +247,12 @@
 <section id="reviews">
   <h2 data-i18n="reviews_title">Отзывы</h2>
   <div class="reviews-grid">
-    {% if rewiews%}
-      {% for review in reviews %}
-        <div class="review-card">
-          <p class="review-text">{{ review.client_text }}</p>
-          <div class="review-footer">
-            <div class="review-avatar">
-              <i class="fas fa-user" style="color: white; font-size: 30px;"></i>
-            </div>
-            <b class="review-name">{{ review.client_name }}</b>
-          </div>
-        </div>
-      {% endfor %}
-    {% else %}
-      <p data-i18n="reviews_empty">Пока нету отзывов</p>
-    {% endif %}
+    <p data-i18n="reviews_empty">Пока нету отзывов</p>
   </div>
 </section>
 
 
-<script src="{{ url_for('static', filename='js/i18n.js') }}"></script>
+<script src="/static/js/i18n.js"></script>
 <script>
 // Открыть модальное окно после редиректа, если есть сообщение (успех/ошибка заявки)
 document.addEventListener('DOMContentLoaded', () => {
